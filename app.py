@@ -51,3 +51,4 @@ def update_figure(selected_amount):
 # Run app and display url result inline in the notebook so you can click url
 if __name__=='__main__':
   app.run_server(debug=True)
+  server = app.server
