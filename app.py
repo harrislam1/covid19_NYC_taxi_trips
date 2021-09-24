@@ -37,6 +37,7 @@ app.layout = html.Div(children=[
     ])
 ])
 
+month_labels=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
 # Define callback to update graph
 @app.callback(
@@ -44,7 +45,7 @@ app.layout = html.Div(children=[
     [Input("amount-dropdown", "value")]
 )
 def update_figure(selected_amount):
-  return px.line(x=test_df.index,y=test_df[selected_amount], title=f"Monthly {selected_amount} for Yellow Cabs in 2020",labels={
+  return px.line(x=month_labels,y=test_df[selected_amount], title=f"Monthly {selected_amount} for Yellow Cabs in 2020",labels={
               "x": "Month","y": f"{selected_amount}"}).update_layout(shapes=
               [dict(type= 'line', yref= 'paper', y0= 0, y1= 1,xref= 'x', x0= 2.1, x1= 2.1)]).add_annotation(
                   x=2.1,text='State of emergency declared')
