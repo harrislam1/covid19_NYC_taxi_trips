@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from jupyter_dash import JupyterDash
+from dash import Dash
 import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
@@ -14,7 +14,8 @@ test_df = pd.read_csv("Monthly_stats2020.csv")
 
 # TODO: consider making 2020-03-07 a global variable to make logic more clear
 # Build App(Displaying both graphs, include Dropdown menu for second graph)
-app = JupyterDash(__name__)
+app = Dash(__name__)
+server = app.server
 fig1 = px.line(daily_trip, x='Date', y='Counts', title='Daily Trips for Yellow Cabs in 2020').update_layout(
     shapes=[dict(type= 'line', yref= 'paper', y0= 0, y1= 1,xref= 'x', x0= "2020-03-07", x1= "2020-03-07")]).add_annotation(
         x="2020-03-07",text='State of emergency declared')
@@ -49,6 +50,6 @@ def update_figure(selected_amount):
                   x=2.1,text='State of emergency declared')
 
 # Run app and display url result inline in the notebook so you can click url
-if __name__=='__main__':
-  app.run_server(debug=True)
-  server = app.server
+#if __name__=='__main__':
+  #app.run_server(debug=True)
+  
